@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { ConferenceEvent } from 'src/app/common/dataTypes';
+import { ConferenceEvent } from 'src/app/common/dataModels';
 
 @Component({
   selector: 'event-thumbnail',

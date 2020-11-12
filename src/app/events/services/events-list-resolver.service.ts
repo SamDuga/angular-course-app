@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import EventService from './events.service';
 import {map} from 'rxjs/operators';
-import { ConferenceEvent } from 'src/app/common/dataTypes';
+import { ConferenceEvent } from 'src/app/common/dataModels';
 
  @Injectable()
  export class EventListResolver implements Resolve<Array<ConferenceEvent>> {

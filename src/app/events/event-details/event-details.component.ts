@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ConferenceEvent } from 'src/app/common/dataTypes';
+import { ConferenceEvent } from 'src/app/common/dataModels';
 import EventService from '../services/events.service';
 
 @Component({

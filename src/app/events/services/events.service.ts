@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { ConferenceEvent } from 'src/app/common/dataTypes';
+import { Observable, Subject } from 'rxjs';
+import { ConferenceEvent } from 'src/app/common/dataModels';
 
 @Injectable()
 export default class EventService {
-    getEvents(): Subject<Array<ConferenceEvent>> {
+    getEvents(): Observable<Array<ConferenceEvent>> {
         let subject = new Subject<Array<ConferenceEvent>>();
         setTimeout(() => {subject.next(events); subject.complete();}, 500);
         return subject;
@@ -12,9 +12,14 @@ export default class EventService {
     getEvent(id: number): ConferenceEvent {
         return events.find(x => x.id === id);
     }
+    saveEvent(event: ConferenceEvent) {
+        event.id = 999;
+        event.sessions = [];
+        events.push(event);
+    }
 }
 
-const events = [
+const events: Array<ConferenceEvent> = [
     {
       id: 1,
       name: 'Angular Connect',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router';
-import { ConferenceEvent } from 'src/app/common/dataTypes';
+import { ConferenceEvent } from 'src/app/common/dataModels';
 import ToastrService from 'src/app/common/services/toastr.service';
 import EventService from '../services/events.service';
 

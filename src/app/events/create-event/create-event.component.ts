@@ -1,24 +1,28 @@
 import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ConferenceEvent } from 'src/app/common/dataModels';
+import EventService from '../services/events.service';
 
 @Component({
-    template: `
-        <h1>
-            <hr>
-            <div>
-                <h3>[Create event form goes here]</h3>
-                <br/>
-                <br/>
-                <button type='submit' class='btn btn-primary'>Save</button>
-                <button type='button' class='btn btn-default' (click)="cancel()">Cancel</button>
-            </div>
-        </h1>
-    `
+    templateUrl: './create-event.component.html',
+    styles: [`
+        em { float: right; color: #E05C65; padding-left: 10px;}
+        .error input {background-color: #E3C3C5}
+    `]
 })
 export class CreateEventComponent {
+    newEvent: ConferenceEvent;
     isDirty: boolean = true;
-    constructor(private router: Router) {}
+    newEventForm: FormGroup;
+    constructor(private router: Router, private eventService: EventService) {}
+
     cancel() {
+        this.router.navigate(['/events']);
+    }
+    saveEvent(formValues) {
+        this.eventService.saveEvent(formValues);
+        this.isDirty = false;
         this.router.navigate(['/events']);
     }
 }

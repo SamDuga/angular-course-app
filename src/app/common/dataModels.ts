@@ -25,3 +25,10 @@ export interface EventSession {
   abstract: string;
   voters: Array<string>;
 }
+
+export interface User {
+    id: number;
+    firstName: string;
+    lastName: string;
+    userName: string;
+}

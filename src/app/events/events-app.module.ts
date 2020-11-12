@@ -14,11 +14,16 @@ import { CreateEventComponent } from './create-event/create-event.component';
 import { Error404Component } from '../common/components/404/404.component';
 import { EventRouteActivator } from './services/event-route-activator.service';
 import { EventListResolver } from './services/events-list-resolver.service';
+import { AuthService } from '../user/services/auth.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateSessionComponent } from './create-session/create-session.component';
 
 @NgModule({
   imports: [
     BrowserModule,
-    RouterModule.forRoot(AppRoutes)
+    RouterModule.forRoot(AppRoutes),
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     EventsAppComponent,
@@ -27,7 +32,8 @@ import { EventListResolver } from './services/events-list-resolver.service';
     NavBarComponent,
     EventDetailsComponent,
     CreateEventComponent,
-    Error404Component
+    Error404Component,
+    CreateSessionComponent
   ],
   providers: [
       EventService,
@@ -39,7 +45,8 @@ import { EventListResolver } from './services/events-list-resolver.service';
           useValue: (component: CreateEventComponent) => {
               if (component.isDirty) return window.confirm('You have not yet saved this event. Cancel?')
           }
-        }
+      },
+      AuthService
   ],
   bootstrap: [EventsAppComponent]
 })
