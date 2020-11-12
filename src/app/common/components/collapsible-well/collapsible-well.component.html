@@ -1,0 +1,4 @@
+<div (click)="toggleVisible()" class="well pointable">
+    <h4>{{title}}</h4>
+    <ng-content *ngIf="visible"></ng-content>
+</div>
