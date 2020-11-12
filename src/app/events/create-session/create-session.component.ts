@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { EventSession } from 'src/app/common/dataModels';
 import * as CustomValidators from '../../common/validators';
 
 @Component({
+    selector: 'create-session',
     templateUrl: './create-session.component.html',
     styles: [`
         em { float: right; color: #E05C65; padding-left: 10px;}
@@ -12,6 +13,8 @@ import * as CustomValidators from '../../common/validators';
 })
 
 export class CreateSessionComponent implements OnInit {
+    @Output() saveNewSession = new EventEmitter();
+    @Output() cancelAddMode = new EventEmitter();
     newSessionForm: FormGroup;
     name: FormControl;
     presenter: FormControl;
@@ -46,5 +49,9 @@ export class CreateSessionComponent implements OnInit {
             abstract: formValues.abstract,
             voters: []
         }
+        this.saveNewSession.emit(session);
+    }
+    cancel() {
+        this.cancelAddMode.emit();
     }
 }

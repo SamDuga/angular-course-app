@@ -17,6 +17,7 @@ import { EventListResolver } from './services/events-list-resolver.service';
 import { AuthService } from '../user/services/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateSessionComponent } from './create-session/create-session.component';
+import { SessionListComponent } from './session-list/session-list.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { CreateSessionComponent } from './create-session/create-session.componen
     EventDetailsComponent,
     CreateEventComponent,
     Error404Component,
-    CreateSessionComponent
+    CreateSessionComponent,
+    SessionListComponent
   ],
   providers: [
       EventService,
