@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { EventSession } from 'src/app/common/dataModels';
 
 @Component({
@@ -6,9 +6,44 @@ import { EventSession } from 'src/app/common/dataModels';
     templateUrl: './session-list.component.html'
 })
 
-export class SessionListComponent implements OnInit {
+export class SessionListComponent implements OnInit, OnChanges {
     @Input() sessions: Array<EventSession>;
+    @Input() filterBy: string;
+    @Input() sortBy: string;
+    filiteredSessions: Array<EventSession> = [];
+
     constructor() { }
 
     ngOnInit() { }
+
+    ngOnChanges() {
+        if (this.sessions) {
+            this.filterSessions(this.filterBy);
+            this.sortSessions(this.sortBy);
+        }
+    }
+
+    filterSessions(filterBy: string) {
+        if (filterBy === 'all') { this.filiteredSessions = this.sessions.slice(0)}
+        else {
+            this.filiteredSessions = this.sessions.filter(session => {
+                return session.level.toLocaleLowerCase() === filterBy;
+            })
+        }
+    }
+
+    sortSessions(sortBy: string) {
+        if (sortBy === 'name') {
+            this.filiteredSessions = this.filiteredSessions.sort( (s1, s2) => {
+                if (s1.name > s2.name) return 1;
+                else if (s1.name === s2.name) return 0;
+                else return -1;
+            })
+        }
+        else if (sortBy === 'votes') {
+            this.filiteredSessions = this.filiteredSessions.sort( (s1, s2) => {
+                return s2.voters.length - s1.voters.length;
+            })
+        }
+    }
 }

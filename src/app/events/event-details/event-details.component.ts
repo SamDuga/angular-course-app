@@ -15,6 +15,8 @@ export class EventDetailsComponent implements OnInit {
     event: ConferenceEvent;
     eventId: number;
     addSessionMode: boolean;
+    filterBy: string = 'all';
+    sortBy: string = 'votes';
 
     constructor(private eventService: EventService, private route: ActivatedRoute) {
         this.eventId = +this.route.snapshot.params['id'];
@@ -38,4 +40,6 @@ export class EventDetailsComponent implements OnInit {
         this.eventService.updateEvent(this.event);
         this.addSessionMode = false;
     }
+
+
 }

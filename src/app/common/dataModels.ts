@@ -1,7 +1,7 @@
 export interface ConferenceEvent {
     id: number;
     name: string;
-    date: string;
+    date: Date;
     time: string;
     price: number;
     imageUrl?: string;
