@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { EventSession } from 'src/app/common/dataModels';
+import * as CustomValidators from '../../common/validators';
 
 @Component({
     templateUrl: './create-session.component.html',
@@ -19,18 +20,12 @@ export class CreateSessionComponent implements OnInit {
     abstract: FormControl;
     constructor() { }
 
-    private restrictedWordsValidator(control: FormControl) : {[key: string]: any} {
-        return control.value.includes('foo')
-        ?   {'restrictedWords': 'foo'}
-        : null
-    }
-
     ngOnInit() {
          this.name = new FormControl('', Validators.required);
          this.presenter = new FormControl('', Validators.required);
          this.duration = new FormControl('', Validators.required);
          this.level = new FormControl('', Validators.required);
-         this.abstract = new FormControl('', [Validators.required, Validators.maxLength(400), this.restrictedWordsValidator]);
+         this.abstract = new FormControl('', [Validators.required, Validators.maxLength(400), CustomValidators.restrictedWordsValidator(['foo', 'bar'])]);
 
          this.newSessionForm = new FormGroup({
              name: this.name,
