@@ -23,6 +23,9 @@ import { DurationPipe } from '../common/services/duration.pipe';
 import { JQUERY_TOKEN } from '../common/services/jquery.service';
 import { SimpleModalComponent } from '../common/components/modal/simple-modal.component';
 import { ModalTriggerDirective } from '../common/components/modal/modalTrigger.directive';
+import { VotingComponent } from './session-list/voting/voting.component';
+import { VoterService } from './services/voter.service';
+import { ValidateLocationDirective } from './create-event/validateLocation.directive';
 
 let toastr: Toastr = window[ 'toastr' ];
 let jquery = window[ '$' ];
@@ -47,7 +50,9 @@ let jquery = window[ '$' ];
         CollapsibleWellComponent,
         DurationPipe,
         SimpleModalComponent,
-        ModalTriggerDirective
+        ModalTriggerDirective,
+        VotingComponent,
+        ValidateLocationDirective
     ],
     providers: [
         EventService,
@@ -67,7 +72,8 @@ let jquery = window[ '$' ];
                 if ( component.isDirty ) return window.confirm( 'You have not yet saved this event. Cancel?' );
             }
         },
-        AuthService
+        AuthService,
+        VoterService
     ],
     bootstrap: [ EventsAppComponent ]
 } )
