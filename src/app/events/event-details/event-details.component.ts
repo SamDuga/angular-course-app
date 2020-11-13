@@ -1,29 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { ConferenceEvent, EventSession } from 'src/app/common/dataModels';
 import EventService from '../services/events.service';
 
-@Component({
+@Component( {
     templateUrl: './event-details.component.html',
-    styles: [`
+    styles: [ `
         .container { padding-left: 20px; padding-right: 20px;}
         .event-image {height: 100px;}
         a {cursor: pointer}
     `]
-})
+} )
 export class EventDetailsComponent implements OnInit {
     event: ConferenceEvent;
-    eventId: number;
     addSessionMode: boolean;
     filterBy: string = 'all';
     sortBy: string = 'votes';
 
-    constructor(private eventService: EventService, private route: ActivatedRoute) {
-        this.eventId = +this.route.snapshot.params['id'];
-    }
+    constructor( private eventService: EventService, private route: ActivatedRoute ) { }
 
     ngOnInit() {
-        this.event = this.eventService.getEvent(this.eventId);
+        this.route.params.forEach( ( params: Params ) => {
+            this.event = this.eventService.getEvent( +params[ 'id' ] );
+            this.addSessionMode = false;
+            this.filterBy = 'all';
+            this.sortBy = 'votes';
+        } );
     }
 
     addSession() {
@@ -33,11 +35,11 @@ export class EventDetailsComponent implements OnInit {
         this.addSessionMode = false;
     }
 
-    saveNewSession(session: EventSession) {
-        const nextId = Math.max.apply(null, this.event.sessions.map(s => s.id));
+    saveNewSession( session: EventSession ) {
+        const nextId = Math.max.apply( null, this.event.sessions.map( s => s.id ) );
         session.id = nextId + 1;
-        this.event.sessions.push(session);
-        this.eventService.updateEvent(this.event);
+        this.event.sessions.push( session );
+        this.eventService.updateEvent( this.event );
         this.addSessionMode = false;
     }
 
