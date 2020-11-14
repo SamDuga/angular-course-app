@@ -20,6 +20,8 @@
             <button [disabled]="profileForm.invalid" type="submit" class="btn btn-primary">Save</button>
         </span>
         <button (click)="cancel()" type="button" class="btn btn-default">Cancel</button>
+
+        <button class="btn btn-warning" type="button" (click)="logout()" style="float: right;">Logout</button>
       </form>
     </div>
   </div>

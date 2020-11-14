@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
@@ -20,7 +21,7 @@ import { EventThumbnailComponent } from './event-thumbnail/event-thumbnail.compo
 import { EventsAppComponent } from './events-app.component';
 import { EventsListComponent } from './events-list/events-list.component';
 import { AppRoutes } from './routes';
-import { EventRouteActivator } from './services/event-route-activator.service';
+import { EventResolver } from './services/event-resolver.service';
 import { EventListResolver } from './services/events-list-resolver.service';
 import EventService from './services/events.service';
 import { VoterService } from './services/voter.service';
@@ -35,7 +36,8 @@ const jquery = window[ '$' ];
         BrowserModule,
         RouterModule.forRoot( AppRoutes ),
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpClientModule
     ],
     declarations: [
         EventsAppComponent,
@@ -64,7 +66,7 @@ const jquery = window[ '$' ];
             provide: JQUERY_TOKEN,
             useValue: jquery
         },
-        EventRouteActivator,
+        EventResolver,
         EventListResolver,
         {
             provide: 'canDeactivateCreateEvent',

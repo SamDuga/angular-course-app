@@ -17,9 +17,9 @@
             Events
             <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu">
-            <li >
-              <a href="">Angular Connect</a>
+          <ul class="dropdown-menu" >
+            <li *ngFor="let event of events">
+              <a [routerLink]="['/events/' + event.id]" routerLinkActive="active" >{{event.name}}</a>
             </li>
           </ul>
         </li>
