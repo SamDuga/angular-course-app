@@ -1,11 +1,11 @@
-import { Component } from "@angular/core";
-import EventService from "src/app/events/services/events.service";
-import { AuthService } from "src/app/user/services/auth.service";
-import { EventSession } from "../../dataModels";
+import { Component } from '@angular/core';
+import EventService from 'src/app/events/services/events.service';
+import { AuthService } from 'src/app/user/services/auth.service';
+import { EventSession } from '../../dataModels';
 
 @Component( {
-    selector: "nav-bar",
-    templateUrl: "./nav-bar.component.html",
+    selector: 'nav-bar',
+    templateUrl: './nav-bar.component.html',
     styles: [
         `
             .nav.navbar-nav {
@@ -26,7 +26,7 @@ import { EventSession } from "../../dataModels";
     ],
 } )
 export class NavBarComponent {
-    searchTerm: string = "";
+    searchTerm = '';
 
     foundSessions = [];
     constructor(

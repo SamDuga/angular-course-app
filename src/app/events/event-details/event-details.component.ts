@@ -14,8 +14,8 @@ import EventService from '../services/events.service';
 export class EventDetailsComponent implements OnInit {
     event: ConferenceEvent;
     addSessionMode: boolean;
-    filterBy: string = 'all';
-    sortBy: string = 'votes';
+    filterBy = 'all';
+    sortBy = 'votes';
 
     constructor( private eventService: EventService, private route: ActivatedRoute ) { }
 

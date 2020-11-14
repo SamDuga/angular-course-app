@@ -5,9 +5,9 @@ export interface ConferenceEvent {
     time: string;
     price: number;
     imageUrl?: string;
-    location?: Location
+    location?: Location;
     onlineUrl?: string;
-    sessions?: Array<EventSession>
+    sessions?: EventSession[];
 }
 
 export interface Location {
@@ -23,7 +23,7 @@ export interface EventSession {
   duration: number;
   level: string;
   abstract: string;
-  voters: Array<string>;
+  voters: string[];
 }
 
 export interface User {

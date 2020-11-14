@@ -5,4 +5,4 @@ import { ProfileComponent } from './components/profile/profile.component';
 export const userRoutes: Routes = [
     {path: 'profile', component: ProfileComponent},
     {path: 'login', component: LoginComponent}
-]
+];

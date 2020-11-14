@@ -1,11 +1,11 @@
-import { Component, Inject, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { ConferenceEvent } from "src/app/common/dataModels";
-import { Toastr, TOASTR_TOKEN } from "src/app/common/services/toastr.service";
-import EventService from "../services/events.service";
+import { Component, Inject, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ConferenceEvent } from 'src/app/common/dataModels';
+import { Toastr, TOASTR_TOKEN } from 'src/app/common/services/toastr.service';
+import EventService from '../services/events.service';
 
 @Component({
-    selector: "events-list",
+    selector: 'events-list',
     template: `
         <div>
             <h1>Upcoming Angular Events</h1>
@@ -22,7 +22,7 @@ import EventService from "../services/events.service";
     `,
 })
 export class EventsListComponent implements OnInit {
-    events: Array<ConferenceEvent>;
+    events: ConferenceEvent[];
 
     constructor(
         private eventService: EventService,
@@ -31,7 +31,7 @@ export class EventsListComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.events = this.route.snapshot.data["events"];
+        this.events = this.route.snapshot.data['events'];
     }
 
     handleThumbnailClick(eventName: string) {

@@ -12,7 +12,7 @@ export class AuthService {
             userName: 'userName',
             firstName: 'Sam',
             lastName: 'Duga'
-        }
+        };
     }
 
     updateCurrentUser(firstName: string, lastName: string) {

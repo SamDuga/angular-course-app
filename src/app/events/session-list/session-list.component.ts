@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { EventSession } from 'src/app/common/dataModels';
 import { AuthService } from 'src/app/user/services/auth.service';
 import { VoterService } from '../services/voter.service';
@@ -9,10 +9,10 @@ import { VoterService } from '../services/voter.service';
 } )
 
 export class SessionListComponent implements OnInit, OnChanges {
-    @Input() sessions: Array<EventSession>;
+    @Input() sessions: EventSession[];
     @Input() filterBy: string;
     @Input() sortBy: string;
-    filiteredSessions: Array<EventSession> = [];
+    filiteredSessions: EventSession[] = [];
 
     constructor( public authService: AuthService, private voterService: VoterService ) { }
 
@@ -26,8 +26,7 @@ export class SessionListComponent implements OnInit, OnChanges {
     }
 
     filterSessions( filterBy: string ) {
-        if ( filterBy === 'all' ) { this.filiteredSessions = this.sessions.slice( 0 ); }
-        else {
+        if ( filterBy === 'all' ) { this.filiteredSessions = this.sessions.slice( 0 ); } else {
             this.filiteredSessions = this.sessions.filter( session => {
                 return session.level.toLocaleLowerCase() === filterBy;
             } );
@@ -37,12 +36,9 @@ export class SessionListComponent implements OnInit, OnChanges {
     sortSessions( sortBy: string ) {
         if ( sortBy === 'name' ) {
             this.filiteredSessions = this.filiteredSessions.sort( ( s1, s2 ) => {
-                if ( s1.name > s2.name ) return 1;
-                else if ( s1.name === s2.name ) return 0;
-                else return -1;
+                if ( s1.name > s2.name ) { return 1; } else if ( s1.name === s2.name ) { return 0; } else { return -1; }
             } );
-        }
-        else if ( sortBy === 'votes' ) {
+        } else if ( sortBy === 'votes' ) {
             this.filiteredSessions = this.filiteredSessions.sort( ( s1, s2 ) => {
                 return s2.voters.length - s1.voters.length;
             } );
@@ -52,12 +48,11 @@ export class SessionListComponent implements OnInit, OnChanges {
     toggleVote( session: EventSession ) {
         if ( this.userHasVoted( session ) ) {
             this.voterService.deleteVoter( session, this.authService.currentUser.userName );
-        }
-        else {
+        } else {
             this.voterService.addVoter( session, this.authService.currentUser.userName );
         }
 
-        if ( this.sortBy === 'votes' ) this.sortSessions( 'votes' );
+        if ( this.sortBy === 'votes' ) { this.sortSessions( 'votes' ); }
     }
 
     userHasVoted( session ): boolean {

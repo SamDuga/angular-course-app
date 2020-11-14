@@ -1,34 +1,34 @@
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
 
-import { EventsAppComponent } from './events-app.component';
-import { EventsListComponent } from './events-list/events-list.component';
-import { EventThumbnailComponent } from './event-thumbnail/event-thumbnail.component';
-import { NavBarComponent } from '../common/components/navbar/nav-bar.component';
-import EventService from './services/events.service';
-import { Toastr, TOASTR_TOKEN } from '../common/services/toastr.service';
-import { EventDetailsComponent } from './event-details/event-details.component';
-import { AppRoutes } from './routes';
-import { CreateEventComponent } from './create-event/create-event.component';
-import { Error404Component } from '../common/components/404/404.component';
-import { EventRouteActivator } from './services/event-route-activator.service';
-import { EventListResolver } from './services/events-list-resolver.service';
-import { AuthService } from '../user/services/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CreateSessionComponent } from './create-session/create-session.component';
-import { SessionListComponent } from './session-list/session-list.component';
+import { Error404Component } from '../common/components/404/404.component';
 import { CollapsibleWellComponent } from '../common/components/collapsible-well/collapsible-well.component';
+import { ModalTriggerDirective } from '../common/components/modal/modalTrigger.directive';
+import { SimpleModalComponent } from '../common/components/modal/simple-modal.component';
+import { NavBarComponent } from '../common/components/navbar/nav-bar.component';
 import { DurationPipe } from '../common/services/duration.pipe';
 import { JQUERY_TOKEN } from '../common/services/jquery.service';
-import { SimpleModalComponent } from '../common/components/modal/simple-modal.component';
-import { ModalTriggerDirective } from '../common/components/modal/modalTrigger.directive';
-import { VotingComponent } from './session-list/voting/voting.component';
-import { VoterService } from './services/voter.service';
+import { Toastr, TOASTR_TOKEN } from '../common/services/toastr.service';
+import { AuthService } from '../user/services/auth.service';
+import { CreateEventComponent } from './create-event/create-event.component';
 import { ValidateLocationDirective } from './create-event/validateLocation.directive';
+import { CreateSessionComponent } from './create-session/create-session.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
+import { EventThumbnailComponent } from './event-thumbnail/event-thumbnail.component';
+import { EventsAppComponent } from './events-app.component';
+import { EventsListComponent } from './events-list/events-list.component';
+import { AppRoutes } from './routes';
+import { EventRouteActivator } from './services/event-route-activator.service';
+import { EventListResolver } from './services/events-list-resolver.service';
+import EventService from './services/events.service';
+import { VoterService } from './services/voter.service';
+import { SessionListComponent } from './session-list/session-list.component';
+import { VotingComponent } from './session-list/voting/voting.component';
 
-let toastr: Toastr = window[ 'toastr' ];
-let jquery = window[ '$' ];
+const toastr: Toastr = window[ 'toastr' ];
+const jquery = window[ '$' ];
 
 @NgModule( {
     imports: [
@@ -69,7 +69,7 @@ let jquery = window[ '$' ];
         {
             provide: 'canDeactivateCreateEvent',
             useValue: ( component: CreateEventComponent ) => {
-                if ( component.isDirty ) return window.confirm( 'You have not yet saved this event. Cancel?' );
+                if ( component.isDirty ) { return window.confirm( 'You have not yet saved this event. Cancel?' ); }
             }
         },
         AuthService,

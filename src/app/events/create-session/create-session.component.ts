@@ -36,11 +36,11 @@ export class CreateSessionComponent implements OnInit {
              duration: this.duration,
              level: this.level,
              abstract: this.abstract
-         })
+         });
     }
 
     saveSession(formValues) {
-        let session: EventSession = {
+        const session: EventSession = {
             id: undefined,
             name: formValues.name,
             presenter: formValues.presenter,
@@ -48,7 +48,7 @@ export class CreateSessionComponent implements OnInit {
             level: formValues.level,
             abstract: formValues.abstract,
             voters: []
-        }
+        };
         this.saveNewSession.emit(session);
     }
     cancel() {

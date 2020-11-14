@@ -4,25 +4,25 @@ import { Router } from '@angular/router';
 import { ConferenceEvent } from 'src/app/common/dataModels';
 import EventService from '../services/events.service';
 
-@Component({
+@Component( {
     templateUrl: './create-event.component.html',
-    styles: [`
+    styles: [ `
         em { float: right; color: #E05C65; padding-left: 10px;}
         .error input {background-color: #E3C3C5}
     `]
-})
+} )
 export class CreateEventComponent {
     newEvent: ConferenceEvent;
-    isDirty: boolean = true;
+    isDirty = true;
     newEventForm: FormGroup;
-    constructor(private router: Router, private eventService: EventService) {}
+    constructor( private router: Router, private eventService: EventService ) { }
 
     cancel() {
-        this.router.navigate(['/events']);
+        this.router.navigate( [ '/events' ] );
     }
-    saveEvent(formValues) {
-        this.eventService.saveEvent(formValues);
+    saveEvent( formValues ) {
+        this.eventService.saveEvent( formValues );
         this.isDirty = false;
-        this.router.navigate(['/events']);
+        this.router.navigate( [ '/events' ] );
     }
 }
